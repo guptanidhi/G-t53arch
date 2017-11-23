@@ -1,0 +1,33 @@
+<h1 class="text-center"> Saved Repositories</h1><hr>
+<div *ngFor="let save of saved">
+  <div class="row" style="overflow: auto;">
+  	<div class="col-md-7">
+    	<img class="img-circle img-responsive pull-left" src="{{save.avatarUrl}}" alt="User Image" width="100px" height="100px" style="margin-right: 15px;margin-top: 15px;" />
+    	<div style="height: 100px;">
+        <a href="{{save.htmlUrl}}" target="_blank">
+        	<h3>{{save.fullName}}</h3>
+        </a>
+        <p>{{save.description}}</p>
+        <strong>Language:</strong> {{save.language}}
+      </div>
+    </div>
+    <div class="col-md-3" style="margin-top: 20px;">
+      <div class="btn btn-success">
+        <span>Forks</span>
+        <span class="badge">{{save.forkCount}}</span>
+      </div><br/>
+      <div class="btn btn-success" style="margin-top: 5px;">
+        <span>Watchers</span>
+        <span class="badge">{{save.watchersCount}}</span>
+      </div>
+    </div>
+    <div class="col-md-2" style="margin-top: 30px;">
+      <button type="button" class="btn btn-danger" (click)="delete(save.id)">Remove</button>            
+    </div>
+  </div>
+  <hr>
+</div>
+
+<div *ngIf="!saved || saved.length === 0">
+	<h4 class="text-center">No Saved Repositories</h4>
+</div>

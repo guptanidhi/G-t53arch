@@ -1,0 +1,94 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="javascript:void(0)">GitHub Search</a>
+    </div>      
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/advance" routerLinkActive="active">Advance Search</a></li>
+      <li *ngIf="isUserLoggedIn"><a routerLink="/saved" routerLinkActive="active">Saved Repositories</a></li>  
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li *ngIf="!isUserLoggedIn">
+        <a href="#" data-toggle="modal" data-target="#signupModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+      </li>
+      <li *ngIf="!isUserLoggedIn">
+        <a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+      </li>
+      <li *ngIf="isUserLoggedIn">
+        <a href="javascript:void(0)" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div id="loginModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Login</h4>
+      </div>
+      <form #f="ngForm" (ngSubmit)="login(f)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="userName">Username</label>
+            <input required ngModel name="userName" #userName="ngModel" type="text" class="form-control loginInput" placeholder="Enter Username">
+            <div class="alert alert-danger" *ngIf="userName.touched && !userName.valid">Username is required.</div>
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password</label>
+            <input required ngModel name="password" #password="ngModel" type="password" class="form-control loginInput" placeholder="Password">
+            <div class="alert alert-danger" *ngIf="password.touched && !password.valid">Password is required.</div>
+          </div>
+          <!-- <div class="checkbox">
+            <label><input type="checkbox"> Remember me</label>
+          </div> -->
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Login</button>
+          <button type="button" class="btn btn-primary loginClose" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="signupModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Sign Up</h4>
+      </div>
+      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+        <div class="modal-body">        
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input required ngModel name="firstName" #firstName="ngModel" type="text" class="form-control registerInput" placeholder="Ex:Abhinav">
+            <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First Name is required.</div>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input required ngModel name="lastName" #lastName="ngModel" type="text" class="form-control registerInput" placeholder="Ex:Karna">
+            <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">Last Name is required.</div>
+          </div>
+          <div class="form-group">
+            <label for="userName">Username</label>
+            <input required ngModel name="registerUserName" #registerUserName="ngModel" type="email" class="form-control registerInput" placeholder="Enter Username">
+            <div class="alert alert-danger" *ngIf="registerUserName.touched && !registerUserName.valid">Username is required.</div>
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password</label>
+            <input required ngModel name="registerPassword" #registerPassword="ngModel" type="password" class="form-control registerInput" placeholder="Password">
+            <div class="alert alert-danger" *ngIf="registerPassword.touched && !registerPassword.valid">Password is required.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Sign Up</button>
+          <button type="button" class="btn btn-primary registerClose" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>

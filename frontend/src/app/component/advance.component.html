@@ -1,0 +1,52 @@
+<div class="container">
+	<div class="row">
+		<h1 class="text-center"> Most Starred Repositories in specific Language</h1><hr>
+	  <div class="col-md-12 text-center">
+	    <form>    	
+	    	<div class="form-inline">
+	    		<label for="languagename" style="font-size: 20px">Language:</label>
+	    		<input class="form-control" style="width: 40%" type="text" placeholder="Ex: Java" [(ngModel)]="languagename" name="languagename" id="searchbox">
+	    			<button class="btn btn-primary" (click)="onClick()">Search</button>
+	    	</div>	     	
+	   </form>
+	 </div>
+	</div>
+  <!-- <div class="row">      
+    <div class="col-md-12">
+      <p>Most Stared Repo In... </p><input type="text" class="form-control" placeholder="Search Language" [(ngModel)]="languagename" name="languagename" id="searchbox" (keyup.enter)="onClick()">    
+    </div>
+  </div> -->
+  <div *ngIf="languagename">
+    <div class="panel panel-default" id="repopanel">
+      <div class="panel-heading">
+        <h3 class="panel-title">10 Most Starred Repo of {{languagename}}</h3>
+      </div>
+    </div>
+    <div *ngFor="let star of stared ; let i=index">
+      <div *ngIf="i<10">
+		    <div class="row" style="overflow: auto;">
+	        <div class="col-md-9">
+	        	<img class="img-circle img-responsive pull-left" src="{{star.owner.avatar_url}}" alt="User Image" width="100px" height="100px" style="margin-right: 15px;margin-top: 15px;" />
+	        	<div style="height: 100px;">
+	            <a href="{{star.html_url}}" target="_blank">
+	            	<h3>{{star.full_name}}</h3>
+	            </a>
+	            <p>{{star.description}}</p>
+	            <strong>Language:</strong> {{star.language}}
+            </div>
+	        </div>
+	        <div class="col-md-2 vcenter">
+	          <div class="btn btn-success">
+	          	<span class="glyphicon glyphicon-star" style="font-size: 23px;margin-top: 2px;"></span>
+	          	<span class="badge" style="font-size: 15px;margin-bottom: 5px;">{{star.watchers_count}}</span>
+	          </div>
+	        </div>
+	        <div class="col-md-1 vcenter" *ngIf="isUserLoggedIn">
+	          <button type="button" class="btn btn-primary" style="font-size: 20px;" (click)="onSave(star)">Save</button>		                
+	        </div>
+		    </div>
+      	<hr>
+      </div>
+    </div>
+  </div>
+</div>

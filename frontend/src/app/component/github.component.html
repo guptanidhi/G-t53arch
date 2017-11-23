@@ -1,0 +1,88 @@
+<div class="row">
+	<h1 class="text-center"> Search Git Repositories</h1><hr>
+  <div class="col-md-12 text-center">
+    <form>    	
+    	<div class="form-inline">
+    		<label for="username" style="font-size: 20px">Github Username:</label>
+    		<input class="form-control" style="width: 40%" [(ngModel)]="username" type="text" name="username" placeholder="Github Username">
+    			<button class="btn btn-primary" (click)="search()">Search</button>
+    	</div>
+     	<!-- <div class="input-group" id= "input-group">
+        <input type="text" class="form-control" placeholder="Github Username" [(ngModel)]="username" name="username" id="searchbox" (keyup.enter)="search()"><button class="btn btn-default" style="margin:0px auto;" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>        
+     	</div> -->     	
+   </form>
+ </div>
+</div>
+
+<div class="container">
+  <div *ngIf="user">
+    <div class="panel panel-default" id = "user_info">
+      <div class="panel-heading">
+        <h3 class="panel-title" id="username">{{user.name}}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-4">
+          <img src="{{user.avatar_url}}" id="profile_image">
+        </div>  
+        <div class="col-md-8">
+          <div class="stats">
+            <ul class="nav nav-pills" role="tablist">
+              <li role="presentation"><a href="#">Public Repo <span class="badge">{{user.public_repos}}</span></a></li>
+              <li role="presentation"><a href="#">Followers<span class="badge">{{user.followers}}</span></a></li>
+              <li role="presentation"><a href="#">Following <span class="badge">{{user.following}}</span></a></li>
+            </ul>
+          </div>
+          <br>
+          <ul class="list-group">
+              <li class="list-group-item"><strong>Username: </strong>{{user.login}}</li>
+              <li class="list-group-item"><strong>Location: </strong>{{user.location}}</li>
+              <li class="list-group-item"><strong>Email: </strong>{{user.email}}</li>
+              <li class="list-group-item"><strong>Blog: </strong>{{user.blog}}</li>
+              <li class="list-group-item"><strong>Member Since: </strong>{{user.created_at}}</li>
+          </ul>
+        </div> 
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Recent Repos of {{user.name}}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div *ngFor="let repo of repos">
+              <div class="row">
+                <div class="col-md-6">
+                  <a href="{{repo.html_url}}" target="_blank">
+                    <h4>{{repo.name}}</h4>
+                  </a>
+                  <p>{{repo.description}}</p>
+                </div>
+                <div class="col-md-2">
+                  <div class="btn btn-success">
+                    <span>Watchers</span>
+                    <span class="badge">{{repo.watchers_count}}</span>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="btn btn-success">
+                    <span>Forks</span>
+                    <span class="badge">{{repo.forks_count}}</span>
+                  </div>
+                </div>
+                <div class="col-md-1 vcenter" *ngIf="isUserLoggedIn">
+                  <button type="button" class="btn btn-primary" (click)="onSave(repo)">Save</button>                   
+                </div>
+                <!-- <div class="col-md-2">
+                  <a href="#">Watchers <span class="badge">{{repo.watcher}}</span></a>
+                  <a href="#">Fork <span class="badge">{{repo.forks}}</span></a>
+                </div> -->
+              </div>
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

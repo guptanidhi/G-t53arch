@@ -1,0 +1,25 @@
+#searchbox{
+    float: left;
+    margin-left: 10%;
+    width: 60%;
+
+
+}
+#navbar-title{
+    font-size: 32px;
+}
+#searchbutton {
+    float: left;
+    margin-left: 5px;
+}
+
+#signin{
+    float: right;
+    margin-top: 10px;
+}
+
+#signup{
+    float: right;
+    margin-top: 10px;
+    margin-right: 5px;
+}
