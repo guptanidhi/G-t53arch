@@ -8,18 +8,11 @@ import { appRouterModule} from './app.route';
 
 
 import { AppComponent } from './app.component';
-
-
 import { GithubComponent } from './component/github.component';
-
 import { NavbarComponent } from './component/navbar.component';
-
 import { AdvanceComponent } from './component/advance.component';
-
 import { GithubService } from './services/github.service';
-
 import { SavedRepoComponent } from './component/savedrepo.component'
-
 
 
 @NgModule({
