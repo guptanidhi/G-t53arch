@@ -1,0 +1,4 @@
+com/stackroute/gitsearch/controller/test/UserControllerTest.class
+com/stackroute/gitsearch/DAO/test/GitRepoDAOImplTest.class
+com/stackroute/gitsearch/DAO/test/UserDAOImplTest.class
+com/stackroute/gitsearch/controller/test/GitRepoControllerTest.class
